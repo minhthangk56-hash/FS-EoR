@@ -1,7 +1,7 @@
 const expansions = [
   {
     expansionName: "Echo of Ruination",
-    expansionColor: "navy",
+    expansionColor: "cyan",
     factionNames: [
       "Dark Mechanicum",
       "Imperial Knight",
