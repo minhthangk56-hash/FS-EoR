@@ -22,8 +22,8 @@ h2 {
 .container {
   display: flex;
   flex-direction: column;
-  width: 1000px;
-  height: 330px;
+  width: 3000px;
+  height: 1000px;
 }
 
 .expansionContainer {
@@ -228,7 +228,3 @@ h2 {
 /* .tabContent.active {
   visibility: visible;
 } */
-.card img {
-  width: 300px;
-  height: auto;
-}
