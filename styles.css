@@ -22,8 +22,8 @@ h2 {
 .container {
   display: flex;
   flex-direction: column;
-  width: 3000px;
-  height: 1080px;
+  width: 900px;
+  height: auto;
 }
 
 .expansionContainer {
