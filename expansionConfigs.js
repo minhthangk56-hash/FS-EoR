@@ -10,7 +10,7 @@ const expansions = [
     factionFolders: [
       "DarkMechanicum",
       "ImperialKnight",
-      "Grey Knight",
+      "GreyKnight",
     ],
     factionColor: ["maroon", "cadetblue","silver"],
   },
