@@ -8,7 +8,7 @@ let allFactionContainers = [];
 let allCardtypeContainers = [];
 let expansionCount = 0;
 const cardScaleStorageKey = "cardScale";
-let cardScale = loadCardScale();
+let cardScale = Number(localStorage.getItem(cardScaleStorageKey)) || 1;
 
 function init() {
   cUI();
@@ -51,22 +51,12 @@ function applyCardScale() {
   document.documentElement.style.setProperty("--cardScale", cardScale);
 }
 
-function loadCardScale() {
-  try {
-    return Number(localStorage.getItem(cardScaleStorageKey)) || 1;
-  } catch {
-    return 1;
-  }
-}
-
 function updateCardScale(change) {
   cardScale = Math.min(
     2,
-    Math.max(0.5, Number((cardScale + change).toFixed(1)))
+    Math.max(0.01, Number((cardScale + change).toFixed(2)))
   );
-  try {
-    localStorage.setItem(cardScaleStorageKey, cardScale);
-  } catch {}
+  localStorage.setItem(cardScaleStorageKey, cardScale);
   applyCardScale();
 }
 
