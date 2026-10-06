@@ -7,9 +7,12 @@ let expansionContainer;
 let allFactionContainers = [];
 let allCardtypeContainers = [];
 let expansionCount = 0;
+const cardScaleStorageKey = "cardScale";
+let cardScale = Number(localStorage.getItem(cardScaleStorageKey)) || 1;
 
 function init() {
   cUI();
+  applyCardScale();
   cAllExpansions();
   hideAll();
   initialSetup();
@@ -20,6 +23,41 @@ function cUI() {
   expansionContainer = document.createElement("div");
   expansionContainer.classList.add("expansionContainer");
   container.append(expansionContainer);
+
+  const sizeControls = document.createElement("div");
+  sizeControls.classList.add("sizeControls");
+
+  const smallerButton = document.createElement("button");
+  smallerButton.classList.add("sizeButton");
+  smallerButton.type = "button";
+  smallerButton.innerText = "-";
+  smallerButton.title = "Make cards 10% smaller";
+  smallerButton.setAttribute("aria-label", "Make cards 10% smaller");
+  smallerButton.addEventListener("click", () => updateCardScale(-0.1));
+
+  const biggerButton = document.createElement("button");
+  biggerButton.classList.add("sizeButton");
+  biggerButton.type = "button";
+  biggerButton.innerText = "+";
+  biggerButton.title = "Make cards 10% bigger";
+  biggerButton.setAttribute("aria-label", "Make cards 10% bigger");
+  biggerButton.addEventListener("click", () => updateCardScale(0.1));
+
+  sizeControls.append(smallerButton, biggerButton);
+  document.body.append(sizeControls);
+}
+
+function applyCardScale() {
+  document.documentElement.style.setProperty("--cardScale", cardScale);
+}
+
+function updateCardScale(change) {
+  cardScale = Math.min(
+    2,
+    Math.max(0.5, Number((cardScale + change).toFixed(1)))
+  );
+  localStorage.setItem(cardScaleStorageKey, cardScale);
+  applyCardScale();
 }
 
 function cAllExpansions() {
